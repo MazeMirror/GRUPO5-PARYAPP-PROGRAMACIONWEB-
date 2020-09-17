@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="master.xhtml">
+
+	<ui:define name="title">
+		.:Listado de Eventos:.
+	</ui:define>
+
+	<ui:define name="titleCont">
+		<span>Eventos</span>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+
+			<div class="row">
+				<div class="col-sm-8 text-right">
+					<div class="form-group box-main-btn">
+						<span style="display: block; height: 30px;"></span>
+						<p:commandButton value="Nuevo"
+							action="#{eventoController.nuevoEvento()}"
+							styleClass="btn btn-primary ajax=false" />
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="form-group table-responsive box-table-class">
+						<p:dataTable id="lstEvento" var="eve"
+							value="#{eventoController.listaEvento}" paginator="true"
+							paginatorPosition="top" rowsPerPageTemplate="10,20,30,40,50"
+							rows="10" styleClass="table table-bordered"
+							emptyMessage="No existen registros" rowIndexVar="item"
+							style="margin-bottom:0">
+
+							<p:column headerText="Id" sortBy="#{eve.idEvento}">
+								<h:outputText value="#{eve.idEvento}" />
+							</p:column>
+
+							<p:column headerText="Nombre" sortBy="#{eve.nombreEvento}">
+								<h:outputText value="#{eve.nombreEvento}" />
+							</p:column>
+
+							<p:column headerText="Descripcion"
+								sortBy="#{eve.descipcionEvento}">
+								<h:outputText value="#{eve.descipcionEvento}" />
+							</p:column>
+
+
+							<p:column headerText="Cantidad Entradas"
+								sortBy="#{eve.cantidadEntradas}">
+								<h:outputText value="#{eve.cantidadEntradas}" />
+							</p:column>
+
+							<p:column headerText="Precio Entradas"
+								sortBy="#{eve.precioEntrada}">
+								<h:outputText value="#{eve.precioEntrada}" />
+							</p:column>
+
+							<p:column headerText="Inicio" sortBy="#{eve.horaInicio}">
+								<h:outputText value="Hora de Inicio" />
+								<h:outputText value="#{eve.horaInicio}">
+									<f:convertDateTime pattern="HH:mm" />
+								</h:outputText>
+							</p:column>
+
+							<p:column headerText="Fin" sortBy="#{eve.horaFin}">
+								<h:outputText value="Hora de Fin" />
+								<h:outputText value="#{eve.horaFin}">
+									<f:convertDateTime pattern="HH:mm" />
+								</h:outputText>
+							</p:column>
+
+							<p:column headerText="Fecha " sortBy="#{eve.fechaEvento}">
+								<h:outputText value="#{eve.fechaEvento}">
+									<f:convertDateTime pattern="dd-MM-yyyy" timeZone="UTC" />
+								</h:outputText>
+							</p:column>
+
+							<p:column headerText="Operación" exportable="false">
+								<h:commandLink action="listaEvento" value="Eliminar"
+									actionListener="#{eventoController.eliminar(eve)}" />
+							</p:column>
+
+
+						</p:dataTable>
+					</div>
+				</div>
+			</div>
+		</h:form>
+	</ui:define>
+
+	<ui:define name="footerCont">
+	</ui:define>
+
+</ui:composition>
+</html>

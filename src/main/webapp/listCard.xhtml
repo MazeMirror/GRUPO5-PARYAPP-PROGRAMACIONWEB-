@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="master.xhtml">
+
+	<ui:define name="title">
+		.:Listado de Tarjetas:.
+	</ui:define>
+
+	<ui:define name="titleCont">
+		<span>Tarjetas</span>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+
+			<div class="row">
+				<div class="col-sm-8 text-right">
+					<div class="form-group box-main-btn">
+						<span style="display: block; height: 30px;"></span>
+						<p:commandButton value="Nuevo"
+							action="#{cardController.nuevoCards()}"
+							styleClass="btn btn-primary ajax=false" />
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="form-group table-responsive box-table-class">
+						<p:dataTable id="lstCard" var="eve"
+							value="#{cardController.listaCards}" paginator="true"
+							paginatorPosition="top" rowsPerPageTemplate="10,20,30,40,50"
+							rows="10" styleClass="table table-bordered"
+							emptyMessage="No existen registros" rowIndexVar="item"
+							style="margin-bottom:0">
+
+							<p:column headerText="Id" sortBy="#{eve.idCard}">
+								<h:outputText value="#{eve.idCard}" />
+							</p:column>
+
+							<p:column headerText="Nombre de titular" sortBy="#{eve.nameonCard}">
+								<h:outputText value="#{eve.nameonCard}" />
+							</p:column>
+
+							<p:column headerText="Fecha de expiración"
+								  sortBy="#{eve.expirationDate}"  >
+								<h:outputText pattern="MM-yyyy" value="#{eve.expirationDate}" />
+									
+							</p:column>
+
+
+							<p:column headerText="Número de tarjeta"
+								sortBy="#{eve.numberCard}">
+								<h:outputText value="#{eve.numberCard}" />
+							</p:column>
+
+							<p:column headerText="CVV"
+								sortBy="#{eve.cvv}">
+								<h:outputText value="#{eve.cvv}" />
+							</p:column>
+
+							<p:column headerText="Operación" exportable="false">
+								<h:commandLink action="listaCards" value="Eliminar"
+									actionListener="#{cardController.eliminar(eve)}" />
+							</p:column>
+
+
+						</p:dataTable>
+					</div>
+				</div>
+			</div>
+		</h:form>
+	</ui:define>
+
+	<ui:define name="footerCont">
+	</ui:define>
+
+</ui:composition>
+</html>

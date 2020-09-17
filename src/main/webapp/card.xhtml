@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="master.xhtml">
+
+	<ui:define name="title">
+        .:Registro de Tarjetas:.
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Tarjeta</span>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<h:outputLabel for="idCard" value="Id " styleClass="control-label" style="display:none" />
+			<p:inputText autocomplete="off" id="idCard"
+				styleClass="form-control"
+				value="#{cardController.card.idCard}" style="display:none"/>
+				<br></br>
+			<h:outputLabel for="nameonCard" value="Nombre del titular"
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="nameonCard"
+				styleClass="form-control"
+				value="#{cardController.card.nameonCard}" maxlength="70"
+				required="true" />
+				<br></br>
+				<h:outputLabel for="expirationDate" value="Fecha de expiración "
+				styleClass="control-label" />
+			<p:calendar id="expirationDate" pattern="MM-yyyy" 
+				value="#{cardController.card.expirationDate}" showOn="button"
+				timeZone="UTC" required="true">
+			</p:calendar>
+			<br></br>
+			<br></br>
+			<h:outputLabel for="numberCard" value="Numero de tarjeta "
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="numberCard"
+				styleClass="form-control"
+				value="#{cardController.card.numberCard}" maxlength="500"
+				required="true" />
+<br></br>
+			<h:outputLabel for="cvv" value="CVV"
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="cvv"
+				styleClass="form-control"
+				value="#{cardController.card.cvv}" maxlength="5" required="true" />
+        	<br></br>
+			<p:commandButton value="Grabar"
+				actionListener="#{cardController.insertar()}"
+				styleClass="btn btn-primary " update="@form"
+				action="listCard?faces-redirect=true" />
+			<p:commandButton value="Cancelar"
+				action="listCard?faces-redirect=true" immediate="true"
+				styleClass="btn btn-default" ajax="false" />
+
+			<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+
+		</h:form>
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition>
+</html>
