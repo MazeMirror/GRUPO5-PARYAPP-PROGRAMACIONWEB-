@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="master.xhtml">
+
+	<ui:define name="title">
+        .:Registro de Usuarios:.
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Usuario</span>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<h:outputLabel for="idUsuario" value="Id " styleClass="control-label" style="display:none" />
+
+			<p:inputText autocomplete="off" id="idUsuario"
+				styleClass="form-control"
+				value="#{userController.user.idUser}" style="display:none" />
+			<h:outputLabel for="nombreUsuario" value="Nombres "
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="nombreUsuario"
+				styleClass="form-control"
+				value="#{userController.user.nameUser}" maxlength="30"
+				required="true" />
+
+			<h:outputLabel for="apellidoUsuario" value="Apellidos "
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="apellidoUsuario"
+				styleClass="form-control"
+				value="#{userController.user.lastnameUser}" maxlength="30"
+				required="true" />
+
+			<p:outputLabel for="tipoUsuario" value="¿Eres cliente u organizador?" />
+			<p:selectOneMenu id="tipoUsuario" value="#{userController.user.typeUser}">
+				<f:selectItem itemLabel="Selecciona uno" itemValue="" />
+				<f:selectItem itemLabel="Cliente/Comprador" itemValue="Usuario Tradicional" />
+				<f:selectItem itemLabel="Organizador/Promotor" itemValue="Organizador" />
+			</p:selectOneMenu><br/>
+			
+			
+			<h:outputLabel for="correoUsuario" value="Correo "
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="correoUsuario"
+				styleClass="form-control"
+				value="#{userController.user.emailUser}" maxlength="30"
+				required="true" />
+
+			<h:outputLabel for="dniUsuario" value="DNI "
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="dniUsuario"
+				styleClass="form-control"
+				value="#{userController.user.dniUser}" maxlength="8"
+				required="true" />
+
+			<h:outputLabel for="celularUsuario" value="Celular "
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="celularUsuario"
+				styleClass="form-control"
+				value="#{userController.user.phoneUser}" maxlength="9"
+				required="true" />
+
+			<h:outputLabel for="ciudadUsuario" value="Ciudad "
+				styleClass="control-label" />
+			<p:inputText autocomplete="off" id="ciudadUsuario"
+				styleClass="form-control"
+				value="#{userController.user.cityUser}" maxlength="30"
+				required="true" />
+
+			<h:outputLabel for="contraseñaUsuario" value="Contraseña "
+				styleClass="control-label" />
+			<p:inputText type="password" autocomplete="off"
+				id="contraseñaUsuario" styleClass="form-control"
+				value="#{userController.user.paswordUser}"
+				maxlength="30" required="true" />
+			<br />
+
+
+			<p:commandButton value="Grabar"
+				actionListener="#{userController.insertar()}"
+				styleClass="btn btn-primary " update="@form"
+				action="listUser?faces-redirect=true" />
+			<p:commandButton value="Cancelar"
+				action="listUser?faces-redirect=true" immediate="true"
+				styleClass="btn btn-default" ajax="false" />
+
+			<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+
+		</h:form>
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition>
+</html>

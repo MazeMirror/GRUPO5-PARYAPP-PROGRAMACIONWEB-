@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"></link>
+	<link rel="shortcut icon" type="image/x-icon"
+		href="resources/img/favicon.ico" />
+</h:head>
+<body>
+
+	<h:form id="frm">
+		
+		<center >
+			<h:graphicImage value="/resources/img/logo.png" height="15%"
+				width="15%"></h:graphicImage>
+			<br />	
+		</center>
+		<div align="center">
+
+			<f:facet name="header">Registrar Usuario</f:facet>
+			
+			<h:panelGrid columns="2">
+				<p:outputLabel for="txtName" value="Nombre" />
+				<p:inputText id="txtName"
+					value="#{registerController.user.nameUser}" required="true"
+					styleClass="form-control" />
+				<p:message for="txtName" display="text" />
+				<br />
+			
+
+				<p:outputLabel for="txtLastname" value="Apellidos" />
+				<p:inputText id="txtLastname"
+					value="#{registerController.user.lastnameUser}" required="true"
+					styleClass="form-control" />
+				<p:message for="txtLastname" display="text" />
+				<br />
+
+					
+				<p:outputLabel for="typeUser" value="TipoUsuario" />
+				<p:selectOneMenu id="typeUser"
+					value="#{registerController.user.typeUser}" required="true"
+					styleClass="form-control" >
+					<f:selectItem itemLabel="Selecciona uno" itemValue="" />
+					<f:selectItem itemLabel="Cliente/Comprador" itemValue="Usuario Tradicional" />
+					<f:selectItem itemLabel="Organizador/Promotor" itemValue="Organizador" />
+					</p:selectOneMenu><br/>
+					<p:message for="typeUser" display="text" />
+				
+					
+				<p:outputLabel for="txtEmail" value="Correo" />
+				<p:inputText id="txtEmail"
+					value="#{registerController.user.emailUser}" required="true"
+					styleClass="form-control" />
+				<p:message for="txtEmail" display="text" />
+				<br />
+				
+				<p:outputLabel for="txtDni" value="DNI" />
+				<p:inputText id="txtDni"
+					value="#{registerController.user.dniUser}" required="true"
+					styleClass="form-control" />
+				<p:message for="txtDni" display="text" />
+				<br />
+				
+				<p:outputLabel for="txtPhone" value="Celular" />
+				<p:inputText id="txtPhone"
+					value="#{registerController.user.phoneUser}" required="true"
+					styleClass="form-control" />
+				<p:message for="txtPhone" display="text" />
+				<br />
+				
+				<p:outputLabel for="txtCity" value="Ciudad" />
+				<p:inputText id="txtCity"
+					value="#{registerController.user.cityUser}" required="true"
+					styleClass="form-control" />
+				<p:message for="txtCity" display="text" />
+				<br />
+
+				<p:outputLabel for="txtPassword1" value="Contraseña :" />
+				<p:password id="txtPassword1"
+					value="#{registerController.user.paswordUser}" match="txtPassword2"
+					label="Password 1" required="true"
+					validatorMessage="Contraseñas no coinciden"
+					styleClass="form-control" />
+				<p:message for="txtPassword1" display="text" />
+				<br />
+
+				<p:outputLabel for="txtPassword2"
+					value="Escriba nuevamente su contraseña:" />
+				<p:password id="txtPassword2"
+					value="#{registerController.user.paswordUser}" label="Password 2"
+					required="true" styleClass="form-control" />
+				<br />
+			</h:panelGrid>
+
+
+
+			<p:commandButton value="Inicio" action="index?faces-redirect=true"
+				immediate="true" styleClass="btn btn-primary" />
+			<p:commandButton value="Registrar"
+				action="#{registerController.registerUser()}"
+				styleClass="btn btn-primary" />
+		</div>
+	</h:form>
+
+</body>
+</html>
