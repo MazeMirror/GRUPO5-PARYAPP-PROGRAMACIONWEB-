@@ -12,6 +12,7 @@ import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 
 import pe.edu.upc.dao.IUserDao;
+import pe.edu.upc.entity.Event;
 import pe.edu.upc.entity.User;
 
 public class UserDaoImpl implements IUserDao, Serializable {
@@ -102,6 +103,33 @@ public class UserDaoImpl implements IUserDao, Serializable {
 		userFound = query.getSingleResult();
 
 		return Optional.of(userFound);
+	}
+
+
+	@Transactional
+	@Override
+	public void update(User user) {
+		try {
+			em.merge(user);
+		} catch (Exception e) {
+			System.out.println("Error al actualizar usuario");
+		}
+		
+	}
+
+
+	@Override
+	public List<User> finByName(User user) {
+		List<User> lista = new ArrayList<User>();
+		try {
+			Query q = em.createQuery("FROM User u WHERE u.nameUser like ?1");
+			q.setParameter(1, "%" + user.getNameUser() + "%");
+			lista = (List<User>) q.getResultList();
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return lista;
 	}
 
 

@@ -3,6 +3,7 @@ package pe.edu.upc.dao;
 import java.util.List;
 import java.util.Optional;
 
+import pe.edu.upc.entity.Event;
 import pe.edu.upc.entity.User;
 
 public interface IUserDao {
@@ -16,4 +17,7 @@ public interface IUserDao {
 
 	Optional<User> findUserByUsername(User user) throws Exception;
 	
+	public List<User> finByName(User user);
+	
+	public void update(User user);
 }

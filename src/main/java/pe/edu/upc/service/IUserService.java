@@ -3,6 +3,7 @@ package pe.edu.upc.service;
 import java.util.List;
 import java.util.Optional;
 
+import pe.edu.upc.entity.Event;
 import pe.edu.upc.entity.User;
 
 public interface IUserService {
@@ -14,4 +15,7 @@ public interface IUserService {
 
 	Optional<User> authentication(User us) throws Exception;
 	
+	public List<User> finByName(User user);
+	
+	public void update(User user);
 }

@@ -7,10 +7,12 @@ import java.util.Optional;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.transaction.Transactional;
 
 import org.mindrot.jbcrypt.BCrypt;
 
 import pe.edu.upc.dao.IUserDao;
+import pe.edu.upc.entity.Event;
 import pe.edu.upc.entity.User;
 import pe.edu.upc.service.IUserService;
 
@@ -56,6 +58,17 @@ public class UserServiceImpl implements IUserService, Serializable {
 		}
 
 		return null;
+	}
+	
+	@Transactional
+	@Override
+	public void update(User user) {
+		uD.update(user);
+	}
+
+	@Override
+	public List<User> finByName(User user) {
+		return uD.finByName(user);
 	}
 
 }

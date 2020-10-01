@@ -9,6 +9,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import pe.edu.upc.entity.Event;
 import pe.edu.upc.entity.User;
 import pe.edu.upc.service.IUserService;
 
@@ -28,11 +29,6 @@ public class UserController implements Serializable {
 		this.listaUser = new ArrayList<User>();
 		this.User = new User();
 		this.listar();
-	}
-	
-	public String nuevoUser() {
-		this.setUser(new User());
-		return "user.xhtml";
 	}
 	
 	public void insertar() {
@@ -69,7 +65,34 @@ public class UserController implements Serializable {
 		}			
 	}
 	
+	public void findbyName() {
+		try {
+			if (User.getNameUser().isEmpty()) {
+				this.listar();
+			} else {
+				listaUser = this.uService.finByName(this.getUser());
+			}
+		} catch (Exception e) {
+			e.getMessage();
+		}
+	}
 
+	public String goUpdate(User user) {
+		this.setUser(user);;
+		return "user.xhtml";
+		
+	}
+	
+	public void update() {
+		try {
+			uService.update(User);
+			this.listar();	
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	
 	public User getUser() {
 		return User;
 	}

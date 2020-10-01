@@ -17,11 +17,16 @@
 
 	<ui:define name="content">
 		<h:form>
-			<h:outputLabel for="idUsuario" value="Id " styleClass="control-label" style="display:none" />
 
-			<p:inputText autocomplete="off" id="idUsuario"
-				styleClass="form-control"
-				value="#{userController.user.idUser}" style="display:none" />
+				
+			<h:outputLabel for="idUser" value="Id"
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="idUser"
+				styleClass="form-control" value="#{userController.user.idUser}"
+				required="true" />
+				
+				
 			<h:outputLabel for="nombreUsuario" value="Nombres "
 				styleClass="control-label" />
 
@@ -76,14 +81,15 @@
 			<h:outputLabel for="contraseñaUsuario" value="Contraseña "
 				styleClass="control-label" />
 			<p:inputText type="password" autocomplete="off"
+				style="display:none"
 				id="contraseñaUsuario" styleClass="form-control"
 				value="#{userController.user.paswordUser}"
 				maxlength="30" required="true" />
 			<br />
 
 
-			<p:commandButton value="Grabar"
-				actionListener="#{userController.insertar()}"
+			<p:commandButton value="Actualizar"
+				actionListener="#{userController.update()}"
 				styleClass="btn btn-primary " update="@form"
 				action="listUser?faces-redirect=true" />
 			<p:commandButton value="Cancelar"
@@ -91,6 +97,7 @@
 				styleClass="btn btn-default" ajax="false" />
 
 			<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+
 
 		</h:form>
 	</ui:define>
