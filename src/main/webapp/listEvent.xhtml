@@ -86,20 +86,20 @@
 							<p:column headerText="Inicio" sortBy="#{eve.startTime}">
 								<h:outputText value="Hora de Inicio" />
 								<h:outputText value="#{eve.startTime}">
-									<f:convertDateTime pattern="HH:mm" />
+									<f:convertDateTime pattern="HH:mm" timeZone="GMT-5"  />
 								</h:outputText>
 							</p:column>
 
 							<p:column headerText="Fin" sortBy="#{eve.endsTime}">
 								<h:outputText value="Hora de Fin" />
 								<h:outputText value="#{eve.endsTime}">
-									<f:convertDateTime pattern="HH:mm" />
+									<f:convertDateTime pattern="HH:mm" timeZone="GMT-5"  />
 								</h:outputText>
 							</p:column>
 
 							<p:column headerText="Fecha " sortBy="#{eve.dateEvent}">
 								<h:outputText value="#{eve.dateEvent}">
-									<f:convertDateTime pattern="dd-MM-yyyy" timeZone="UTC" />
+									<f:convertDateTime pattern="dd-MM-yyyy" timeZone="GMT-5" />
 								</h:outputText>
 							</p:column>
 
