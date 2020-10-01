@@ -36,4 +36,15 @@ private static final long serialVersionUID = 1L;
 		eD.eliminar(idEvent);		
 	}
 
+	@Override
+	public List<Event> findByNameVaccine(Event event) {
+	
+		return eD.findByNameEvent(event);
+	}
+
+	@Override
+	public void update(Event event) {
+		eD.update(event);
+	}
+
 }

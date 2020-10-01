@@ -19,16 +19,35 @@
 	<ui:define name="content">
 		<h:form>
 
-			<div class="row">
-				<div class="col-sm-8 text-right">
-					<div class="form-group box-main-btn">
-						<span style="display: block; height: 30px;"></span>
-						<p:commandButton value="Nuevo"
+			<div class="row" align="left">
+				<div class="row">
+
+					<div class="col-sm-4">
+						<div class="form-group">
+							<h:outputLabel for="name" value="Búsqueda"
+								styleClass="control-label" />
+							<p:inputText autocomplete="off" id="name"
+								styleClass="form-control"
+								value="#{eventController.event.nameEvent}" maxlength="45" />
+						</div>
+					</div>
+					<div class="col-sm-6 text-right">
+						<div class="form-group box-main-btn">
+							<span style="display: block; height: 30px;"></span>
+							<p:commandButton value="Limpiar" update="lstEvento"
+								actionListener="#{eventController.limpiarEvent()}"
+								styleClass="btn btn-default" ajax="false" />
+							<p:commandButton value="Buscar" update="lstEvento"
+								actionListener="#{eventController.findByName()}"
+								styleClass="btn btn-danger" ajax="true" />
+							<p:commandButton value="Nuevo"
 							action="#{eventController.nuevoEvent()}"
 							styleClass="btn btn-primary ajax=false" />
+						</div>
 					</div>
 				</div>
 			</div>
+			
 
 			<div class="row">
 				<div class="col-sm-12">
@@ -84,11 +103,16 @@
 								</h:outputText>
 							</p:column>
 
-							<p:column headerText="Operación" exportable="false">
+							<p:column headerText="Eliminar" exportable="false">
 								<h:commandLink action="listaEvent" value="Eliminar"
 									actionListener="#{eventController.eliminar(eve)}" />
 							</p:column>
-
+							
+							<p:column headerText="Modificar" style="text-align:center">
+								<h:commandLink action="#{eventController.goUpdate(eve)}">
+									<i class="fa fa-pencil-alt"></i>
+								</h:commandLink>
+							</p:column>
 
 						</p:dataTable>
 					</div>

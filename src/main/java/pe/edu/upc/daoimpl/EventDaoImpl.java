@@ -12,6 +12,7 @@ import javax.transaction.Transactional;
 import pe.edu.upc.dao.IEventDao;
 import pe.edu.upc.entity.Event;
 
+
 public class EventDaoImpl implements IEventDao, Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -57,6 +58,32 @@ public class EventDaoImpl implements IEventDao, Serializable{
 			System.out.println(ex.getMessage());
 		}				
 	}
-	
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Event> findByNameEvent(Event event) {
+		List<Event> lista = new ArrayList<Event>();
+		try {
+			Query q = em.createQuery("from Event e where e.nameEvent like ?1");
+			q.setParameter(1, "%"+ event.getNameEvent()+ "%");
+			lista = (List<Event>) q.getResultList();
+		} catch (Exception e) {
+			System.out.println("Error al buscar evento");
+		}
+		return lista;
+	}
+
+
+	@Transactional
+	@Override
+	public void update(Event event) {
+		try {
+			em.merge(event);
+		} catch (Exception e) {
+			System.out.println("Error al actualizar evento");
+		}
+		
+	}
 	
 }
+

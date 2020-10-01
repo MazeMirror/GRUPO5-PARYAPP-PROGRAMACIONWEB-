@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import pe.edu.upc.entity.Event;
+
 import pe.edu.upc.service.IEventService;
 
 @Named
@@ -69,7 +70,36 @@ private static final long serialVersionUID = 1L;
 		}			
 	}
 	
-
+	public void findByName() {
+		try {
+			
+			if(Event.getNameEvent().isEmpty()) {
+				this.listar();
+			} else {
+				listaEvent=this.eService.findByNameVaccine(this.getEvent());
+			}
+				
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	public String goUpdate(Event event) {
+		this.setEvent(event);
+		return "updateEvent.xhtml";
+		
+	}
+	
+	public void update() {
+		try {
+			eService.update(Event);
+			this.listar();	
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	
 	public Event getEvent() {
 		return Event;
 	}
