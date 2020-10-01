@@ -44,14 +44,15 @@
 								<h:outputText value="#{eve.idCard}" />
 							</p:column>
 
-							<p:column headerText="Nombre de titular" sortBy="#{eve.nameonCard}">
+							<p:column headerText="Nombre de titular"
+								sortBy="#{eve.nameonCard}">
 								<h:outputText value="#{eve.nameonCard}" />
 							</p:column>
 
 							<p:column headerText="Fecha de expiración"
-								  sortBy="#{eve.expirationDate}"  >
+								sortBy="#{eve.expirationDate}">
 								<h:outputText pattern="MM-yyyy" value="#{eve.expirationDate}" />
-									
+
 							</p:column>
 
 
@@ -60,8 +61,7 @@
 								<h:outputText value="#{eve.numberCard}" />
 							</p:column>
 
-							<p:column headerText="CVV"
-								sortBy="#{eve.cvv}">
+							<p:column headerText="CVV" sortBy="#{eve.cvv}">
 								<h:outputText value="#{eve.cvv}" />
 							</p:column>
 
@@ -69,7 +69,11 @@
 								<h:commandLink action="listaCards" value="Eliminar"
 									actionListener="#{cardController.eliminar(eve)}" />
 							</p:column>
-
+							<p:column headerText="Modificar" style="text-align:center">
+								<h:commandLink action="#{cardController.goUpdate(eve)}">
+									<i class="fa fa-pencil-alt"></i>
+								</h:commandLink>
+							</p:column>
 
 						</p:dataTable>
 					</div>

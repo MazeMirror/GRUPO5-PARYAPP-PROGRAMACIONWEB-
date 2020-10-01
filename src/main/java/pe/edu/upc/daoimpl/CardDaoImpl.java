@@ -61,5 +61,16 @@ public class CardDaoImpl  implements ICardDao, Serializable {
 		}			
 		
 	}
+	
+	@Transactional
+	@Override
+	public void update(Card card) {
+		try {
+			em.merge(card);
+		} catch (Exception e) {
+			System.out.println("Error al actualizar Tarjeta");
+		}
+		
+	}
 
 }

@@ -88,5 +88,20 @@ public class CardController implements Serializable{
 	public void setListaMotores(List<Card> listaCards) {
 		this.listaCards = listaCards;
 	}
+	
 
+	public String goUpdate(Card card) {
+		this.setCard(card);
+		return "updateCard2.xhtml";
+		
+	}
+	
+	public void update() {
+		try {
+			mService.update(card);
+			this.listar();	
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
 }

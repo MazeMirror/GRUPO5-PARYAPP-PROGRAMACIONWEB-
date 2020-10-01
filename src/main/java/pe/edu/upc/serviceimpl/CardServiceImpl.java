@@ -40,6 +40,10 @@ public class CardServiceImpl implements ICardService, Serializable {
 		mD.eliminar(idCard);
 	}
 	
+	@Override
+	public void update(Card card) {
+		mD.update(card);
+	}
 	
 
 }
