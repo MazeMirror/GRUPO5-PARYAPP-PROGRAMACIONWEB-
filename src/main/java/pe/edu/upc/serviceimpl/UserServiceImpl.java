@@ -55,7 +55,7 @@ public class UserServiceImpl implements IUserService, Serializable {
 			return uD.findUserByUsername(user);
 		}
 
-		return Optional.of(new User());
+		return null;
 	}
 
 }
