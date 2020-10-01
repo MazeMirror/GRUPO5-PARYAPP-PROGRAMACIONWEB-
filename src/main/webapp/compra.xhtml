@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="master.xhtml">
+
+	<ui:define name="title">
+        .:Registro de Compra:.
+    </ui:define>
+
+	<ui:define name="titleCont">
+		<span>Compra</span>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+			<h:outputLabel for="idCompra" value= "Id" styleClass="control-label" style="display:none" />
+
+			<p:inputText autocomplete="off" id="idCompra"
+				styleClass="form-control"
+				value="#{compraController.compra.idCompra}" style="display:none" />
+				
+			<h:outputLabel for="fechaCompra" value="Fecha "
+				styleClass="control-label" />
+			<p:calendar id="fechaCompra" pattern="dd/MM/yyyy"
+				value="#{compraController.compra.dateCompra}" showOn="button"
+				timeZone="UTC" required="true">
+			</p:calendar>
+			<br />
+				
+			<h:outputLabel for="NumeroEntradas" value="Numero_Entradas"
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="NumeroEntradas"
+				styleClass="form-control"
+				value="#{compraController.compra.numberEntrada}" maxlength="30"
+				required="true" />
+
+		<p:outputLabel for="tipoComprobante" value="¿Que Comprobante desea?" />
+			<p:selectOneMenu id="tipoComprobante" value="#{compraController.compra.tipoComprobante}">
+				<f:selectItem itemLabel="Selecciona uno" itemValue="" />
+				<f:selectItem itemLabel="Boleta" itemValue="Boleta" />
+				<f:selectItem itemLabel="Factura" itemValue="Factura" />
+			</p:selectOneMenu><br/>
+
+		<p:outputLabel for="cboEventos" value="Eventos" />
+		
+			<p:selectOneMenu id="cboEventos"
+				value="#{compraController.compra.event}"
+				converter="omnifaces.SelectItemsConverter">
+				<f:selectItems value="#{compraController.listaEvents}" var="ev"
+					itemLabel="#{ev.nameEvent}" itemValue="#{ev}" />
+			</p:selectOneMenu>
+			<br />
+			
+	     <h:outputLabel for="MontoFinal" value="Monto Final"
+				styleClass="control-label" />
+
+			<p:inputText autocomplete="off" id="MontoFinal"
+				styleClass="form-control"
+				value="#{compraController.compra.montoFinal}" maxlength="30"
+				required="true" />
+
+			<p:commandButton value="Comprar"
+				actionListener="#{compraController.insertar()}"
+				styleClass="btn btn-primary " update="@form"
+				action="listCompra?faces-redirect=true" />
+			<p:commandButton value="Cancelar"
+				action="listCompra?faces-redirect=true" immediate="true"
+				styleClass="btn btn-default" ajax="false" />
+
+			<p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+
+		</h:form>
+	</ui:define>
+
+	<ui:define name="footerCont">
+
+	</ui:define>
+</ui:composition>
+</html>

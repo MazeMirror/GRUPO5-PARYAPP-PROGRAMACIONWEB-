@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="master.xhtml">
+
+	<ui:define name="title">
+		.:Listado de Compras:.
+	</ui:define>
+
+	<ui:define name="titleCont">
+		<span>Compras</span>
+	</ui:define>
+
+	<ui:define name="content">
+		<h:form>
+
+			<div class="row">
+				<div class="col-sm-8 text-right">
+					<div class="form-group box-main-btn">
+						<span style="display: block; height: 30px;"></span>
+						<p:commandButton value="Nuevo"
+							action="#{compraController.nuevoCompra()}"
+							styleClass="btn btn-primary ajax=false" />
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="form-group table-responsive box-table-class">
+						<p:dataTable id="lstCompra" var="eve"
+							value="#{compraController.listaCompras}" paginator="true"
+							paginatorPosition="top" rowsPerPageTemplate="10,20,30,40,50"
+							rows="10" styleClass="table table-bordered"
+							emptyMessage="No existen registros" rowIndexVar="item"
+							style="margin-bottom:0">
+
+							<p:column headerText="Id" sortBy="#{eve.idCompra}">
+								<h:outputText value="#{eve.idCompra}" />
+							</p:column>
+
+                            <p:column headerText="Fecha de Compra"
+								  sortBy="#{eve.dateCompra}"  >
+								<h:outputText pattern="MM-yyyy" value="#{eve.dateCompra}" />
+									
+							</p:column>
+
+							<p:column headerText="Cantidad de Entradas" sortBy="#{eve.numberEntrada}">
+								<h:outputText value="#{eve.numberEntrada}" />
+							</p:column>
+
+							<p:column headerText="Tipo de Comprobante"
+								sortBy="#{eve.tipoComprobante}">
+								<h:outputText value="#{eve.tipoComprobante}" />
+							</p:column>
+
+							<p:column headerText="Monto Final"
+								sortBy="#{eve.montoFinal}">
+								<h:outputText value="#{eve.montoFinal}" />
+							</p:column>
+
+                            <p:column headerText="Evento"
+								sortBy="#{eve.event.nameEvent}">
+								<h:outputText value="#{eve.event.nameEvent}" />
+							</p:column>
+
+						</p:dataTable>
+					</div>
+				</div>
+			</div>
+		</h:form>
+	</ui:define>
+
+	<ui:define name="footerCont">
+	</ui:define>
+
+</ui:composition>
+</html>
